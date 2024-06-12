@@ -17,8 +17,16 @@ contract CounterTest is Test {
         assertEq(counter.number(), 1);
     }
 
-    function testFuzz_SetNumber(uint256 x) public {
-        counter.setNumber(x);
-        assertEq(counter.number(), x);
+    function test_msgsenderEqOwner() public {
+        // console.log(counter.owner());
+        console.log('sender address', address(this)); 
+
+
+        assertEq(counter.owner(), address(this));
     }
+
+   function testFuzz_SetNumber(uint256 x) public {
+       counter.setNumber(x);
+       assertEq(counter.number(), x);
+   }
 }
