@@ -21,6 +21,5 @@ contract FalloutTest is Test {
         assertEq(attacker, fo.owner());
         vm.stopPrank();
     }
-
 }
 
