@@ -19,6 +19,7 @@ contract VaultTest is Test {
 
         bytes32 password = vm.load(address(vault), bytes32(uint256(1)));
         vault.unlock(password);
+        
         assertEq(init_password_hash, password);
         assertEq(vault.locked(), false);
     }
