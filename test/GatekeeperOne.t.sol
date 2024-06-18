@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../src/GatekeeperOne.sol";
 import "forge-std/Test.sol";
+import "../src/GatekeeperOne.sol";
 
-contract PrivacyTest is Test {
+contract GatekeeperOneTest is Test {
     GatekeeperOne gko;
     GatekeeperOneAttack gkoAttack;
 
@@ -16,6 +16,6 @@ contract PrivacyTest is Test {
 
     function test_enter() public {
         gkoAttack.attack();
-        assertTrue(true);
+        assertEq(gko.entrant(), msg.sender);
     }
 }

