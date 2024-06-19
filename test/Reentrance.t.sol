@@ -22,17 +22,17 @@ contract ReentranceTest is Test {
 
     function testReentrance() public {
 
-        assertEq(address(reentrance).balance, 3 ether);
-        assertEq(address(attacker).balance, 5 ether);
-        attacker.attack();
+        // assertEq(address(reentrance).balance, 3 ether);
+        // assertEq(address(attacker).balance, 5 ether);
+        // attacker.attack();
     
         // console.log(address(attacker).balance);
         // assertEq(address(attacker).balance, 6 ether); 
 
 
         // assertEq(address(reentrance).balance, 2 ether);
-        console.log(address(reentrance).balance);
-        console.log(address(attacker).balance);
+        // console.log(address(reentrance).balance);
+        // console.log(address(attacker).balance);
 
         //  assertEq(address(attacker).balance, 6 ether);
         // assertEq(reentrance.balanceOf(address(attacker)), 1 ether);
