@@ -4,10 +4,6 @@ pragma solidity ^0.8.0;
 import "forge-std/Test.sol";
 import {Reentrance, Attacker} from "../src/Reentrance.sol";
 
-// TODO
-// 原理是递归调用fallback, 从而获取更多Ether
-// 但使用Foundry和remix测试不通过
-
 contract ReentranceTest is Test {
 
     Reentrance reentrance;
