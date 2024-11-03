@@ -22,6 +22,7 @@ contract NaughtCoin is ERC20 {
 
     function transfer(address _to, uint256 _value) public override lockTokens returns (bool) {
         super.transfer(_to, _value);
+        return true;
     }
 
     // Prevent the initial owner from transferring tokens until the timelock has passed

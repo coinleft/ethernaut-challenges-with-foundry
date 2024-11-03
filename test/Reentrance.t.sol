@@ -16,25 +16,16 @@ contract ReentranceTest is Test {
     function setUp() public {
         reentrance = new Reentrance();
         attacker = new Attacker(address(reentrance));
-        vm.deal(address(attacker), 5 ether);
-        vm.deal(address(reentrance), 3 ether);
+        vm.deal(address(attacker), 1 ether);
+        vm.deal(address(reentrance), 2 ether);
     }
 
     function testReentrance() public {
-
-        // assertEq(address(reentrance).balance, 3 ether);
-        // assertEq(address(attacker).balance, 5 ether);
-        // attacker.attack();
+        console.log(address(this).balance);
+        console.log(address(attacker).balance);
+        attacker.attack();
     
-        // console.log(address(attacker).balance);
-        // assertEq(address(attacker).balance, 6 ether); 
-
-
-        // assertEq(address(reentrance).balance, 2 ether);
-        // console.log(address(reentrance).balance);
-        // console.log(address(attacker).balance);
-
-        //  assertEq(address(attacker).balance, 6 ether);
-        // assertEq(reentrance.balanceOf(address(attacker)), 1 ether);
+        console.log(address(attacker).balance);
+        assertEq(address(reentrance).balance, 0 ether); 
     }
 }
