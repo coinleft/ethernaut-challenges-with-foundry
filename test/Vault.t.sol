@@ -11,7 +11,7 @@ contract VaultTest is Test {
     bytes32 init_password_hash;
 
     function setUp() public {
-        init_password_hash = keccak256(abi.encodePacked('bulldogly'));
+        init_password_hash = keccak256(abi.encodePacked('coinleft'));
         vault = new Vault(init_password_hash);
     }
 

